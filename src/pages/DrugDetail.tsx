@@ -1,4 +1,3 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { 
@@ -6,7 +5,7 @@ import {
   Shield, 
   Clock, 
   Activity, 
-  Scales, 
+  Scale, 
   ArrowLeft,
   Bell,
   Star
@@ -166,7 +165,7 @@ const DrugDetail = () => {
                 
                 <div className="flex items-start">
                   <div className="bg-drugopedia-100 p-2 rounded-full mr-3">
-                    <Scales className="h-5 w-5 text-drugopedia-600" />
+                    <Scale className="h-5 w-5 text-drugopedia-600" />
                   </div>
                   <div>
                     <h3 className="font-medium text-sm text-gray-500">Route of Administration</h3>
