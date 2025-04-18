@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Pill, Menu, X } from 'lucide-react';
@@ -32,14 +31,16 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-white/80 backdrop-blur-md shadow-lg py-2' 
+          : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
-          <Pill className="h-6 w-6 text-drugopedia-600" />
-          <span className="font-bold text-xl text-drugopedia-800">Drugopedia</span>
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <Link to="/" className="flex items-center space-x-2 group">
+          <Pill className="h-6 w-6 text-drugopedia-600 transition-transform duration-300 group-hover:scale-110" />
+          <span className="font-bold text-xl text-gradient">Drugopedia</span>
         </Link>
 
         <div className="hidden md:flex items-center space-x-6">
@@ -56,7 +57,7 @@ const Navbar = () => {
             <Input
               type="search"
               placeholder="Search drugs..."
-              className="w-64 pr-10"
+              className="w-64 pr-10 bg-white/80 backdrop-blur-sm border-drugopedia-200 focus:border-drugopedia-400 transition-all"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -64,7 +65,7 @@ const Navbar = () => {
               type="submit" 
               variant="ghost" 
               size="icon" 
-              className="absolute right-0 top-0 h-full"
+              className="absolute right-0 top-0 h-full hover:text-drugopedia-600"
             >
               <Search className="h-4 w-4" />
             </Button>
@@ -81,7 +82,6 @@ const Navbar = () => {
         </Button>
       </div>
 
-      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-md p-4 animate-fade-in">
           <div className="flex flex-col space-y-4">
@@ -110,7 +110,7 @@ const Navbar = () => {
               <Input
                 type="search"
                 placeholder="Search drugs..."
-                className="w-full pr-10"
+                className="w-full pr-10 bg-white/80 backdrop-blur-sm border-drugopedia-200 focus:border-drugopedia-400 transition-all"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -118,7 +118,7 @@ const Navbar = () => {
                 type="submit" 
                 variant="ghost" 
                 size="icon" 
-                className="absolute right-0 top-0 h-full"
+                className="absolute right-0 top-0 h-full hover:text-drugopedia-600"
               >
                 <Search className="h-4 w-4" />
               </Button>

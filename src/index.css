@@ -7,47 +7,47 @@
   :root {
     --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
-
+    
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
+    
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
+    
     --primary: 199 89% 48%;
     --primary-foreground: 210 40% 98%;
-
+    
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
+    
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
+    
     --accent: 199 89% 48%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
+    
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 199 89% 48%;
-
+    
     --radius: 0.75rem;
   }
-
+  
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-gradient-to-br from-drugopedia-50 to-sky-100 text-foreground antialiased min-h-screen;
   }
 }
 
 @layer components {
   .drug-card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-border;
+    @apply bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-white/20 hover:border-drugopedia-200 hover:-translate-y-1;
   }
   
   .fade-in-section {
@@ -56,5 +56,62 @@
   
   .fade-in-section.is-visible {
     @apply opacity-100 translate-y-0;
+  }
+  
+  .glow-effect {
+    @apply relative overflow-hidden;
+  }
+  
+  .glow-effect::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500;
+    transform: translateX(-100%);
+  }
+  
+  .glow-effect:hover::before {
+    @apply opacity-100;
+    transform: translateX(100%);
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-drugopedia-600 to-sky-500 bg-clip-text text-transparent;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px -10px rgba(66, 153, 225, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px -10px rgba(66, 153, 225, 0.8);
   }
 }
